@@ -4,8 +4,9 @@ public class Venda {
 
     static int numeroNFeInc = 1;
     int numeroNFe;
-    String cpf;
-    String data;
+
+    String data = "07/12/2024";
+    String dataCadastro;
 
     Produto[] produtos = new Produto[maxProdutos];
     Pagamento[] parcelas = new Pagamento[maxParcelas];
@@ -14,17 +15,14 @@ public class Venda {
     int contadorProdutos = 0;
 
     //Inicio o contador de parcelas em 0, mas incremento ele na hora de mostrar o recibo
-
     int contadorParcelas = 0;
 
-    public Venda(String cpf, String data){
-        this.cpf = cpf;
-        this.data = data;
+    public Venda(Cliente cliente) {
+        dataCadastro = cliente.getDataCadastro();
         this.numeroNFe = numeroNFeInc++;
     }
 
     //Aqui é possível gerenciar o contador de parcelas e de produtos
-
     public int getContadorProdutos(){
         return contadorProdutos;
     }
@@ -96,10 +94,17 @@ public class Venda {
         }
     }
 
-    public void imprimeRecibo() {
+    public void imprimeRecibo(boolean flag, ClientePF clientePF, ClientePJ clientePJ) {
         System.out.println("Dados da Venda:");
         System.out.println("NFe: " + numeroNFe);
-        System.out.println("CPF: " + cpf);
+
+        if (flag){
+            clientePF.imprimirDadosPF();
+        }
+        else{
+            clientePJ.imprimirDadosPJ();
+        }
+
         System.out.println("Data: " + data);
         System.out.println("Total de produtos: " + contadorProdutos);
         for (int i = 0; i < contadorProdutos; i++) {
