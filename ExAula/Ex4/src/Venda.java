@@ -94,7 +94,7 @@ public class Venda {
         }
     }
 
-    public void imprimeRecibo(boolean flag, ClientePF clientePF, ClientePJ clientePJ) {
+    public void imprimeRecibo(boolean flag, ClientePF clientePF, ClientePJ clientePJ, Venda venda) {
         System.out.println("Dados da Venda:");
         System.out.println("NFe: " + numeroNFe);
 
